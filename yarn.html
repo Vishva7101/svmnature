@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISHVA PERSONAL USE</title>
+    <style>
+        table {       
+            width: fit-content;
+        }
+        th {
+            padding: 5px 20px;
+        }
+        td.button {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div>   
+        <center><h2>RATE CALCULATION</h2></center>
+        <form action="">
+            <center>
+                <table> 
+                    <tr>
+                        <th colspan="2">YARN</th>
+                        <th>CONE</th>
+                        <th>QUANTITY</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <select name="" id="select">
+                                <option value="1">20s to 40s cone to cone sample upto 60kg</option>
+                                <option value="2">20s to 40s cone to cone above 60kg</option>
+                                <option value="3">20s to 40s wax winding upto 50kg</option>
+                                <option value="4">20s to 40s wax winding above 50kg</option>
+                                <option value="5">polyester (50s 75s 150s) above 10kg</option>
+                                <option value="6">2ply,3ply loose fabric</option>
+                                <option value="7">2ply,3ply loose fabric bio wash, wax winding</option>
+                            </select>
+                        </td>
+                        <td>
+                           <input type="number" id="cone">
+                        </td>
+                        <td>
+                            <input type="number" id="quantity">
+                        </td>
+                        <td>
+                           <button type="button" onclick="calculate()">Submit</button>
+                        </td>
+                    </tr>
+                    <tr>    
+                        <td colspan="5">
+                            <center>Rate: <span id="rate"></span></center>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </form>
+    </div>
+    <script>
+        function calculate() {
+            const select = parseInt(document.getElementById('select').value); // Get the selected value
+            const cone = parseFloat(document.getElementById('cone').value);  // Get cone value
+            const quantity = parseFloat(document.getElementById('quantity').value);  // Get quantity value
+
+            if (isNaN(cone) || isNaN(quantity) || select === "") {
+                alert("Please enter valid values.");
+                return;
+            }
+
+            let rate = 0;
+
+            // Switch based on selected option
+            switch (select) {
+                case 1:
+                    rate = (cone * 2.8) / quantity;
+                    break;
+                case 2:
+                    rate = (cone * 5) / quantity;
+                    break;
+                case 3:
+                    rate = (cone * 4) / quantity;
+                    break;
+                case 4:
+                    rate = (cone * 7) / quantity;
+                    break;
+                case 5:
+                    rate = (cone * 25) / quantity;
+                    break;
+                case 6:
+                    rate = (cone * 13) / quantity;
+                    break;
+                case 7:
+                    rate = (cone * 15) / quantity;
+                    break;
+                default:
+                    alert("Invalid selection");
+                    return;
+            }
+
+            // Display the calculated rate
+            document.getElementById('rate').innerText = rate.toFixed(2);
+        }
+    </script>
+</body>
+</html>
